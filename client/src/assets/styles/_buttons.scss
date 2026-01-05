@@ -1,0 +1,65 @@
+.btn {
+  font-size: 20px;
+  border-radius: 999px;
+  transition:
+    background-color 160ms ease,
+    color 160ms ease,
+    box-shadow 120ms ease,
+    transform 120ms ease;
+}
+
+.btn-primary {
+  color: $light;
+  background-color: $primary;
+  border-color: $primary;
+
+  &:hover,
+  &:focus-visible,
+  &:active {
+    color: $light !important;
+    background-color: darken($primary, 7%);
+    border-color: darken($primary, 7%);
+  }
+
+  &:active {
+    transform: scale(0.96);
+  }
+
+  &:disabled,
+  &.disabled {
+    color: $light !important;
+    background-color: rgba($primary, 0.6);
+    opacity: 1;
+    cursor: not-allowed;
+  }
+}
+
+.btn-outline-primary {
+  color: $primary;
+  border-color: $primary;
+  background-color: transparent;
+
+  &:hover,
+  &:focus-visible,
+  &:active {
+    color: $light !important;
+    background-color: $primary;
+    border-color: $primary;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+  }
+
+  &:active {
+    transform: scale(0.96);
+  }
+}
+
+.btn-danger {
+  color: $light;
+
+  &:hover,
+  &:focus-visible,
+  &:active {
+    outline: none;
+    box-shadow: none;
+  }
+}

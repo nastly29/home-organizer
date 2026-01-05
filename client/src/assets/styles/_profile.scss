@@ -1,0 +1,250 @@
+.profile-page {
+  .page-title {
+    font-size: 40px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    color: $body-color;
+  }
+
+  .page-subtitle {
+    font-size: 22px;
+    line-height: 28px;
+    color: $gray-100;
+    margin-bottom: 22px;
+  }
+
+  .profile-wrap {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .profile-alert {
+    border-radius: 14px;
+    margin-bottom: 16px;
+    transition: opacity 300ms ease, transform 300ms ease;
+  }
+
+  .profile-card--single {
+    background: $light;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    padding: 6px 0;
+    overflow: hidden;
+  }
+
+  .profile-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 22px;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    margin: 0;
+
+    + .profile-row {
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+    }
+  }
+
+  .profile-row__left {
+    min-width: 0;
+  }
+
+  .profile-row__title {
+    font-size: 18px;
+    font-weight: 800;
+    color: $body-color;
+    margin-bottom: 6px;
+  }
+
+  .profile-row__value {
+    font-size: 18px;
+    color: $gray-100;
+    line-height: 22px;
+    word-break: break-word;
+  }
+
+  .profile-action-btn {
+    border: 0;
+    background: transparent;
+    color: $primary;
+
+    width: 42px;
+    height: 42px;
+    border-radius: 999px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+    transition: background-color 140ms ease, transform 140ms ease;
+
+    i {
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    &:hover {
+      background: rgba($primary, 0.08);
+      transform: scale(1.05);
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: none;
+    }
+  }
+
+  .profile-danger {
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    display: flex;
+    justify-content: center;
+  }
+
+  .profile-danger__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    border: none;
+    color: #dc3545;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 6px 12px;
+    border-radius: 8px;
+    transition: color 160ms ease, transform 160ms ease;
+
+    &:hover {
+      color: darken(#dc3545, 8%);
+      transform: scale(1.06);
+    }
+
+    &:active {
+      transform: scale(0.96);
+    }
+  }
+
+  .profile-modal__danger {
+    color: #dc3545;
+    font-size: 16px;
+    margin-bottom: 12px;
+    line-height: 22px;
+  }
+}
+
+// "Мої команди"
+.private-header {
+  .btn-my-teams {
+    background: transparent;
+    border: none;
+    color: $primary;
+    font-weight: 700;
+    padding: 10px 14px;
+    border-radius: 999px;
+    font-size: 22px;
+    text-decoration: none;
+    transition: transform 160ms ease, color 160ms ease;
+
+    &:hover {
+      background: transparent;
+      color: $primary;
+      transform: scale(1.06);
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: none;
+    }
+  }
+
+  //кнопка профілю
+  .btn-profile {
+    background: transparent;
+    border: 1px solid rgba($primary, 0.35);
+    color: $primary;
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 160ms ease, color 160ms ease, border-color 160ms ease;
+    cursor: pointer;
+
+    &:hover {
+      background: transparent;
+      color: $primary;
+      border-color: $primary;
+      transform: scale(1.1);
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: none;
+    }
+
+    i {
+      font-size: 26px;
+      line-height: 1;
+    }
+  }
+}
+
+.profile-menu {
+  position: relative;
+
+  .profile-dropdown {
+    display: none;
+
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+
+    min-width: 260px;
+    border-radius: 18px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 18px 55px rgba(0, 0, 0, 0.14);
+    overflow: hidden;
+    background: #fff;
+    z-index: 1000;
+
+    &.is-open {
+      display: block;
+    }
+  }
+
+  .profile-dropdown__item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    border: 0;
+    background: transparent;
+    text-decoration: none;
+    color: $body-color;
+    padding: 12px 14px;
+    font-size: 18px;
+    text-align: left;
+    cursor: pointer;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.04);
+    }
+
+    &--danger {
+      color: #dc3545;
+    }
+  }
+
+  .profile-dropdown__divider {
+    height: 1px;
+    background: rgba(0, 0, 0, 0.08);
+  }
+}

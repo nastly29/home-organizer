@@ -1,0 +1,21 @@
+$primary: #518956;
+$secondary: #1b481b;
+$success: #2e8f4a;
+$danger: #c93131;
+$light: #fff;
+
+$gray-100: #646b71;
+$body-bg: #F1F1F1;
+$body-color: #333;
+
+$font-family-base: "PT Serif", serif;
+$heading-color: #4f4e4e;
+
+$link-color: $secondary;
+$link-hover-color: $success;
+$link-decoration: underline;
+
+$input-focus-border-color: $success;
+$input-focus-box-shadow: 0 0 0 0.25rem rgba(222, 148, 78, 0.25);
+
+@import "~bootstrap/scss/bootstrap";

@@ -1,0 +1,339 @@
+.team-shopping-page {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+
+  .team-shopping-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+
+    padding: 16px 18px;
+    border-radius: 18px;
+    background: $light;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.04);
+  }
+
+  .team-shopping-title {
+    margin: 0;
+    font-size: 40px;
+    font-weight: 900;
+  }
+
+  .team-shopping-subtitle {
+    margin-top: 6px;
+    font-weight: 700;
+    font-size: 18px;
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .shopping-tabs-wrap {
+    display: flex;
+    justify-content: center;
+    margin: 5px 0 5px;
+  }
+
+  .shopping-tabs {
+    display: inline-flex;
+    margin: 0 auto;
+    width: fit-content;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 8px;
+    border-radius: 16px;
+    border: 1px solid rgba($primary, 0.45);
+    background: rgba($primary, 0.07);
+  }
+
+  .shopping-tab {
+    border: 0;
+    background: $light;
+    color: $primary;
+    font-weight: 900;
+    font-size: 18px;
+    padding: 10px 16px;
+    border-radius: 999px;
+    transition: transform 140ms ease, background 140ms ease;
+
+    &:hover {
+      transform: translateY(-1px);
+    }
+
+    &.is-active {
+      background: $primary;
+      color: $light;
+    }
+  }
+
+  .shopping-alert {
+    border-radius: 14px;
+  }
+
+  .shopping-empty {
+    padding: 26px 16px;
+    border-radius: 18px;
+    background: $light;
+    border: 1px dashed rgba(0, 0, 0, 0.16);
+    text-align: center;
+
+    .shopping-empty__title {
+      font-weight: 900;
+      font-size: 18px;
+    }
+
+    .shopping-empty__text {
+      margin-top: 6px;
+      font-weight: 700;
+      color: rgba(0, 0, 0, 0.6);
+    }
+  }
+
+  .shopping-list {
+    display: grid;
+    gap: 12px;
+    margin-top: 0;
+  }
+}
+
+.shopping-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: $light;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.035);
+
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.06);
+    border-color: rgba(0, 0, 0, 0.12);
+  }
+
+  .shopping-card__left {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    min-width: 0;
+    flex: 1;
+  }
+
+  .shopping-card__check {
+    margin-top: 6px;
+    flex: 0 0 auto;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: $primary;
+    transition: transform 140ms ease, box-shadow 140ms ease;
+
+    &:hover {
+      transform: scale(1.08);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.10);
+    }
+
+    &:active {
+      transform: scale(0.92);
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.55;
+      box-shadow: none;
+      transform: none;
+    }
+  }
+
+  .shopping-card__meta {
+    min-width: 0;
+    display: grid;
+    gap: 8px;
+  }
+
+  .shopping-card__title {
+    font-weight: 900;
+    font-size: 19px;
+    line-height: 1.2;
+    word-break: break-word;
+  }
+
+  .shopping-card__qty-inline {
+    font-weight: 800;
+    color: rgba(0, 0, 0, 0.62);
+  }
+
+  .shopping-card__row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+  }
+
+  .shopping-card__sub {
+    margin-top: 6px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    color: rgba(0, 0, 0, 0.62);
+    font-size: 16px;
+    align-items: center;
+  }
+
+  .shopping-card__qty {
+    font-weight: 800;
+    color: rgba(0, 0, 0, 0.62);
+  }
+
+  .shopping-card__note {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.62);
+    line-height: 1.25;
+    word-break: break-word;
+
+    i {
+      font-size: 16px;
+      line-height: 1;
+      color: rgba($primary, 0.85);
+      flex: 0 0 auto;
+      margin-top: 1px;
+    }
+  }
+
+  .shopping-card__category {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba($primary, 0.25);
+    background: rgba($primary, 0.08);
+    color: $primary;
+    font-size: 15px;
+    font-weight: 800;
+    white-space: nowrap;
+
+    i {
+      font-size: 16px;
+    }
+  }
+
+  .shopping-card__actions {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+
+    .btn {
+      border-radius: 999px;
+      font-weight: 800;
+    }
+  }
+}
+
+.shopping-modal {
+  .form-control,
+  .form-select {
+    border-radius: 14px;
+    font-size: 18px;
+    padding: 12px 14px;
+  }
+
+  .shopping-modal__row {
+    display: grid;
+    grid-template-columns: 1fr 170px;
+    gap: 12px;
+  }
+
+  .shopping-modal__field {
+    margin-bottom: 14px;
+  }
+
+  .shopping-modal__label {
+    font-weight: 800;
+    margin-bottom: 8px;
+    color: $body-color;
+    display: block;
+  }
+
+  .shopping-modal__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 8px;
+  }
+}
+
+.confirm-buy {
+  text-align: center;
+
+  .confirm-buy__text {
+    font-size: 18px;
+    color: $primary;
+    line-height: 1.35;
+  }
+
+  .confirm-buy__actions {
+    margin-top: 16px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+}
+
+
+@media (max-width: 576px) {
+  .team-shopping-head{
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .shopping-add-btn{
+    width: 100%;
+    justify-content: center;
+  }
+
+  .shopping-card {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .shopping-card__left {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .shopping-card__meta {
+    width: 100%;
+    justify-items: center;
+  }
+
+  .shopping-card__row,
+  .shopping-card__note {
+    justify-content: center;
+  }
+
+  .shopping-card__actions {
+    width: 100%;
+    justify-content: center;
+    padding-top: 6px;
+    border-top: 1px dashed rgba(0, 0, 0, 0.12);
+  }
+
+  .shopping-modal__row {
+    grid-template-columns: 1fr !important;
+  }
+}

@@ -1,0 +1,118 @@
+.public-home {
+  padding-top: 12px;
+}
+
+// вітальна частина
+.hero {
+  display: flex;
+  align-items: flex-start;
+  padding: 60px 0 40px;
+  margin-top: 60px;
+  margin-bottom: 60px;
+
+  .hero-content {
+    h1 {
+      font-size: 52px;
+      line-height: 58px;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+
+    p {
+      font-size: 22px;
+      line-height: 30px;
+      color: $gray-100;
+      max-width: 520px;
+      margin-bottom: 28px;
+    }
+  }
+}
+
+// CTA-кнопка
+.hero-cta {
+  padding: 16px 36px;
+  font-size: 22px;
+}
+
+// фото
+.hero-image-wrap {
+  display: flex;
+  justify-content: right;
+
+  .hero-image {
+    width: 100%;
+    max-width: 480px;
+  }
+}
+
+// переваги
+.features {
+  padding: 40px 0 70px;
+  margin-bottom: 130px;
+
+  h2 {
+    font-weight: 800;
+    font-size: 40px;
+    margin-bottom: 10px;
+    color: $body-color;
+  }
+
+  .subtitle {
+    font-size: 22px;
+    line-height: 28px;
+    color: $primary;
+    margin-bottom: 26px;
+    max-width: 720px;
+  }
+}
+
+// картки
+.card.feature-card {
+  background-color: $light;
+}
+
+.feature-card {
+  border-radius: 18px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.10);
+    border-color: rgba(0, 0, 0, 0.12);
+  }
+
+  &:active {
+    transform: translateY(-2px);
+  }
+
+  .feature-card-content {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .feature-text {
+    .title {
+      font-weight: 800;
+      font-size: 22px;
+      margin-bottom: 6px;
+      color: $body-color;
+      text-align: left;
+    }
+
+    .desc {
+      font-size: 20px;
+      line-height: 24px;
+      color: $gray-100;
+      margin: 0;
+      text-align: left;
+    }
+  }
+
+  .feature-icon {
+    font-size: 40px;
+    color: $primary;
+    flex-shrink: 0;
+  }
+}
