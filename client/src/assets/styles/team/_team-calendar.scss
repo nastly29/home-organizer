@@ -14,6 +14,12 @@
     background: $light;
     border: 1px solid rgba(0, 0, 0, 0.08);
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.04);
+
+    .btn{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
 
   .team-calendar-title {

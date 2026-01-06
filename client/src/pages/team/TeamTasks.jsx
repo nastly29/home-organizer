@@ -190,47 +190,50 @@ export default function TeamTasks() {
             Створюйте завдання, призначайте відповідальних та відстежуйте виконання.
           </div>
         </div>
-
+  
         <button type="button" className="btn btn-outline-primary" onClick={openCreate} disabled={busy}>
-          <i className="bi bi-plus-lg" /></button>
-      </div>
-
-      <div className="task-tabs">
-        <button
-          type="button"
-          className={`task-tab ${filter === "all" ? "is-active" : ""}`}
-          onClick={() => setFilter("all")}
-        >
-          Усі
-        </button>
-
-        <button
-          type="button"
-          className={`task-tab ${filter === "mine" ? "is-active" : ""}`}
-          onClick={() => setFilter("mine")}
-        >
-          Мої
-        </button>
-
-        <button
-          type="button"
-          className={`task-tab ${filter === "overdue" ? "is-active" : ""}`}
-          onClick={() => setFilter("overdue")}
-        >
-          Прострочені
-        </button>
-
-        <button
-          type="button"
-          className={`task-tab ${filter === "completed" ? "is-active" : ""}`}
-          onClick={() => setFilter("completed")}
-        >
-          Виконані
+          <i className="bi bi-plus-lg" />
         </button>
       </div>
-
+  
+      <div className="d-flex justify-content-center">
+        <div className="task-tabs">
+          <button
+            type="button"
+            className={`task-tab ${filter === "all" ? "is-active" : ""}`}
+            onClick={() => setFilter("all")}
+          >
+            Усі
+          </button>
+  
+          <button
+            type="button"
+            className={`task-tab ${filter === "mine" ? "is-active" : ""}`}
+            onClick={() => setFilter("mine")}
+          >
+            Мої
+          </button>
+  
+          <button
+            type="button"
+            className={`task-tab ${filter === "overdue" ? "is-active" : ""}`}
+            onClick={() => setFilter("overdue")}
+          >
+            Прострочені
+          </button>
+  
+          <button
+            type="button"
+            className={`task-tab ${filter === "completed" ? "is-active" : ""}`}
+            onClick={() => setFilter("completed")}
+          >
+            Виконані
+          </button>
+        </div>
+      </div>
+  
       {error ? <div className="alert alert-danger task-alert">{error}</div> : null}
-
+  
       {loading || membersLoading ? (
         <div className="task-state">
           <div className="spinner-border" role="status" aria-hidden="true" />
@@ -256,7 +259,7 @@ export default function TeamTasks() {
           ))}
         </div>
       )}
-
+  
       <TaskModal
         open={modalOpen}
         mode={modalMode}
@@ -268,4 +271,4 @@ export default function TeamTasks() {
       />
     </div>
   );
-}
+}  

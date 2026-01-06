@@ -30,7 +30,6 @@ function isoDateLocal(d) {
 }
 
 function firstDayOfMonthKey(monthKey) {
-  // "YYYY-MM" -> "YYYY-MM-01"
   return `${monthKey}-01`;
 }
 
@@ -46,7 +45,7 @@ export default function TeamCalendar() {
   const [error, setError] = useState("");
 
   const [modalOpen, setModalOpen] = useState(false);
-  const [modalMode, setModalMode] = useState("create"); // create | edit
+  const [modalMode, setModalMode] = useState("create"); 
   const [editingEvent, setEditingEvent] = useState(null);
 
   const requestSeq = useRef(0);
@@ -73,7 +72,6 @@ export default function TeamCalendar() {
     });
   }, [eventsByDate, selectedDate]);
 
-  // ✅ Дата, яку показуємо в заголовку списку (завжди синхронна зі списком)
   const displayDate = useMemo(() => selectedDate, [selectedDate]);
 
   async function loadMonth(month) {
@@ -101,9 +99,6 @@ export default function TeamCalendar() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [teamId, activeMonth]);
 
-  // ✅ Опційно, але корисно:
-  // якщо користувач перегорнув місяць, а selectedDate лишилась з іншого місяця —
-  // автоматично переведемо selectedDate на перший день активного місяця.
   useEffect(() => {
     if (!selectedDate || !activeMonth) return;
     if (!String(selectedDate).startsWith(activeMonth)) {
@@ -137,8 +132,6 @@ export default function TeamCalendar() {
       setModalOpen(false);
       setEditingEvent(null);
 
-      // ✅ якщо подію створили/оновили на іншу дату — можна одразу перейти на неї
-      // (щоб заголовок "Список подій на" точно відповідав тому, що юзер зробив)
       const nextDate = String(payload?.date || "").trim();
       if (nextDate) setSelectedDate(nextDate);
 
@@ -171,21 +164,26 @@ export default function TeamCalendar() {
 
   return (
     <div className="team-calendar-page">
-      <div className="team-calendar-head">
-        <div>
-          <h2 className="team-calendar-title">Події</h2>
+      <div className="team-calendar-head d-flex align-items-center justify-content-between gap-3 flex-wrap">
+        <div className="flex-grow-1">
+          <h2 className="team-calendar-title mb-1">Події</h2>
           <div className="team-calendar-subtitle">
             Плануйте спільні справи — події відображаються в календарі.
           </div>
         </div>
-
-        <button type="button" className="btn btn-outline-primary" onClick={openCreate} disabled={busy}>
+  
+        <button
+          type="button"
+          className="btn btn-outline-primary"
+          onClick={openCreate}
+          disabled={busy}
+        >
           <i className="bi bi-plus-lg" />
         </button>
       </div>
-
-      {error ? <div className="alert alert-danger calendar-alert">{error}</div> : null}
-
+  
+      {error ? <div className="alert alert-danger calendar-alert mb-0">{error}</div> : null}
+  
       <div className="calendar-wrap">
         <MonthCalendar
           month={activeMonth}
@@ -196,33 +194,36 @@ export default function TeamCalendar() {
           onSelectDate={setSelectedDate}
         />
       </div>
-
+  
       <div className="calendar-list">
         <div className="calendar-list__head">
           <div className="calendar-list__title">
-            Список подій на <span className="calendar-list__date">{displayDate}</span>
+            Список подій на{" "}
+            <span className="calendar-list__date fw-bold">{displayDate}</span>
           </div>
         </div>
-
+  
         {loading ? (
-          <div className="team-members-state">
+          <div className="team-members-state text-center">
             <div className="spinner-border" role="status" aria-hidden="true" />
-            <div className="team-members-state__text">Завантаження...</div>
+            <div className="team-members-state__text mt-2">Завантаження...</div>
           </div>
         ) : selectedEvents.length === 0 ? (
-          <div className="calendar-empty">
-            <div className="calendar-empty__title">Немає подій</div>
-            <div className="calendar-empty__text">Натисніть “Додати”, щоб створити подію на обраний день.</div>
+          <div className="calendar-empty text-center">
+            <div className="calendar-empty__title fw-bold">Немає подій</div>
+            <div className="calendar-empty__text text-muted">
+              Натисніть “Додати”, щоб створити подію на обраний день.
+            </div>
           </div>
         ) : (
-          <div className="event-list">
+          <div className="event-list d-grid gap-2">
             {selectedEvents.map((ev) => (
               <EventRow key={ev.id} event={ev} onClick={() => openEdit(ev)} />
             ))}
           </div>
         )}
       </div>
-
+  
       <EventModal
         open={modalOpen}
         mode={modalMode}
@@ -235,4 +236,4 @@ export default function TeamCalendar() {
       />
     </div>
   );
-}
+}  

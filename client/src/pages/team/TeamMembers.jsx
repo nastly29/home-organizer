@@ -86,45 +86,45 @@ export default function TeamMembers() {
 
   return (
     <div className="team-members-page">
-      <div className="team-members-header">
-        <div className="team-members-header__left">
-          <h2 className="team-members-title">Учасники</h2>
+      <div className="team-members-header d-flex align-items-start justify-content-between gap-3 flex-wrap">
+        <div className="team-members-header__left flex-grow-1">
+          <h2 className="team-members-title mb-1">Учасники</h2>
           {team?.name ? (
             <div className="team-members-subtitle">Команда «{team.name}»</div>
           ) : null}
         </div>
-
+  
         <div className="team-members-header__right">
-          <div className="team-members-meta">
-            <div className="team-members-meta__item">
-              <div className="team-members-meta__label">Учасників</div>
-              <div className="team-members-meta__value">{members.length}</div>
+          <div className="team-members-meta d-flex gap-3">
+            <div className="team-members-meta__item text-center">
+              <div className="team-members-meta__label small text-muted">Учасників</div>
+              <div className="team-members-meta__value fw-bold">{members.length}</div>
             </div>
-
-            <div className="team-members-meta__item">
-              <div className="team-members-meta__label">Ваш статус</div>
-              <div className="team-members-meta__value">
+  
+            <div className="team-members-meta__item text-center">
+              <div className="team-members-meta__label small text-muted">Ваш статус</div>
+              <div className="team-members-meta__value fw-bold">
                 {isOwnerViewer ? "Власник" : "Учасник"}
               </div>
             </div>
           </div>
         </div>
       </div>
-
-      {error ? <div className="team-members-alert">{error}</div> : null}
-
+  
+      {error ? <div className="alert alert-danger mb-0">{error}</div> : null}
+  
       {loading ? (
-        <div className="team-members-state">
+        <div className="team-members-state text-center">
           <div className="spinner-border" role="status" aria-hidden="true" />
-          <div className="team-members-state__text">Завантаження...</div>
+          <div className="team-members-state__text mt-2">Завантаження...</div>
         </div>
       ) : sortedMembers.length === 0 ? (
-        <div className="team-members-empty">
-          <div className="team-members-empty__icon">
+        <div className="team-members-empty text-center">
+          <div className="team-members-empty__icon mb-2">
             <i className="bi bi-people" aria-hidden="true" />
           </div>
-          <div className="team-members-empty__title">Список порожній</div>
-          <div className="team-members-empty__text">
+          <div className="team-members-empty__title fw-bold">Список порожній</div>
+          <div className="team-members-empty__text text-muted">
             Наразі у команді немає учасників.
           </div>
         </div>
@@ -144,4 +144,4 @@ export default function TeamMembers() {
       )}
     </div>
   );
-}
+}  

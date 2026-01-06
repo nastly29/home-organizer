@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { useParams} from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import { apiGetTeamDashboard } from "../firebase/authApi";
 
@@ -46,22 +46,23 @@ export default function TeamHome() {
 
   return (
     <div className="team-home-page">
-      
-      <div className="team-home-head">
+
+      <div className="team-home-head d-flex flex-column flex-sm-row align-items-stretch align-items-sm-center justify-content-between gap-3">
         <div className="team-home-head__left">
-          <h2 className="team-home-title">Головна</h2>
-          <div className="team-home-subtitle">Коротка статистика команди.</div>
+          <h2 className="team-home-title mb-0">Головна</h2>
+          <div className="team-home-subtitle">Інформаційна панель команди.</div>
         </div>
 
-        <div className="team-home-head__right">
+        <div className="team-home-head__right d-flex justify-content-sm-end">
           <button
             type="button"
-            className="btn btn-outline-primary"
+            className="btn btn-outline-primary w-100 w-sm-auto"
             onClick={load}
             disabled={loading}
             title="Оновити статистику"
           >
-            <i className="bi bi-arrow-repeat" /></button>
+            <i className="bi bi-arrow-repeat" />
+          </button>
         </div>
       </div>
 
@@ -73,32 +74,31 @@ export default function TeamHome() {
           <div className="team-home-state__text">Завантаження...</div>
         </div>
       ) : (
-        <>
-          <div className="team-home-grid">
-          
+        <div className="team-home-grid row g-3">
+
+          <div className="col-12 col-lg-6">
             <HomeCard title="Завдання" icon="bi-check2-square" to={`/teams/${teamId}/tasks`}>
               <MetricRow label="Невиконані на тиждень" value={data?.tasks?.weekOpenTotal ?? 0} />
               <MetricRow label="Мої невиконані на тиждень" value={data?.tasks?.weekOpenMine ?? 0} />
               <MetricRow label="Прострочені" value={data?.tasks?.overdueOpen ?? 0} danger />
             </HomeCard>
+          </div>
 
-    
+          <div className="col-12 col-lg-6">
+            <HomeCard title="Витрати" icon="bi-cash-coin" to={`/teams/${teamId}/finances`}>
+              <MetricRow label="Загалом за місяць" value={formatMoneyUAH(data?.finances?.monthTotal)} money />
+              <MetricRow label="Мої за місяць" value={formatMoneyUAH(data?.finances?.monthMine)} money />
+            </HomeCard>
+          </div>
+
+          <div className="col-12 col-lg-6">
             <HomeCard title="Покупки" icon="bi-bag" to={`/teams/${teamId}/shopping`}>
               <MetricRow label="Потрібно купити" value={data?.shopping?.openCount ?? 0} />
             </HomeCard>
+          </div>
 
-           
-            <HomeCard title="Витрати" icon="bi-cash-coin" to={`/teams/${teamId}/finances`}>
-              <MetricRow
-                label="Загалом за місяць"
-                value={formatMoneyUAH(data?.finances?.monthTotal)}
-                money
-              />
-              <MetricRow label="Мої за місяць" value={formatMoneyUAH(data?.finances?.monthMine)} money />
-            </HomeCard>
-
-          
-            <HomeCard
+          <div className="col-12 col-lg-6">
+            <HomeCard 
               title="Події"
               icon="bi-calendar-event"
               to={`/teams/${teamId}/calendar`}
@@ -108,7 +108,7 @@ export default function TeamHome() {
               <TodayList titles={todayTitles} />
             </HomeCard>
           </div>
-        </>
+        </div>
       )}
     </div>
   );

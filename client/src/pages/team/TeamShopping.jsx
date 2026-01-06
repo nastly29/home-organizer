@@ -178,24 +178,25 @@ export default function TeamShopping() {
 
   return (
     <div className="team-shopping-page">
-      <div className="team-shopping-head">
-        <div>
-          <h2 className="team-shopping-title">Покупки</h2>
-          <div className="team-shopping-subtitle">
+      <div className="team-shopping-head d-flex align-items-center justify-content-between gap-3">
+        <div className="flex-grow-1">
+          <h2 className="team-shopping-title m-0">Покупки</h2>
+          <div className="team-shopping-subtitle mt-1">
             Зручний список покупок для всієї команди.
           </div>
         </div>
-
+  
         <button
           type="button"
           className="btn btn-outline-primary shopping-add-btn"
           onClick={openCreate}
           disabled={busy || confirmLoading}
         >
-          <i className="bi bi-plus-lg" /></button>
+          <i className="bi bi-plus-lg" />
+        </button>
       </div>
-
-      <div className="shopping-tabs-wrap">
+  
+      <div className="shopping-tabs-wrap d-flex justify-content-center">
         <div className="shopping-tabs">
           {CATEGORIES.map((c) => (
             <button
@@ -209,20 +210,18 @@ export default function TeamShopping() {
           ))}
         </div>
       </div>
-
-      {error ? <div className="alert alert-danger shopping-alert">{error}</div> : null}
-
+  
+      {error ? <div className="alert alert-danger shopping-alert mb-0">{error}</div> : null}
+  
       {loading ? (
         <div className="task-state">
           <div className="spinner-border" role="status" aria-hidden="true" />
           <div className="task-state__text">Завантаження...</div>
         </div>
       ) : items.length === 0 ? (
-        <div className="shopping-empty">
+        <div className="shopping-empty text-center">
           <div className="shopping-empty__title">Список порожній</div>
-          <div className="shopping-empty__text">
-            Натисніть “Додати”, щоб створити позицію.
-          </div>
+          <div className="shopping-empty__text">Натисніть “Додати”, щоб створити позицію.</div>
         </div>
       ) : (
         <div className="shopping-list">
@@ -239,7 +238,7 @@ export default function TeamShopping() {
           ))}
         </div>
       )}
-
+  
       <ShoppingModal
         open={modalOpen}
         mode={modalMode}
@@ -249,7 +248,7 @@ export default function TeamShopping() {
         submitting={busy}
         categories={categoriesForModal}
       />
-
+  
       <ConfirmBuyModal
         open={confirmOpen}
         item={confirmItem}
@@ -263,4 +262,4 @@ export default function TeamShopping() {
       />
     </div>
   );
-}
+}  

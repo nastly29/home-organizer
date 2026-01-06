@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function HomeCard({ title, icon, to, children, className = "" }) {
   return (
-    <div className={`home-card ${className}`.trim()}>
+    <div className={`home-card h-100 ${className}`.trim()}>
       <div className="home-card__head">
         <div className="home-card__title">
           <i className={`bi ${icon}`} /> {title}

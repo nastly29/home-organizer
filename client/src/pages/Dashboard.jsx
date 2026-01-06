@@ -88,55 +88,62 @@ export default function Dashboard() {
 
   return (
     <div className="container py-4 teams-page">
-      <div className="teams-layout">
-        <h1 className="page-title text-center">Команди</h1>
 
-        <p className="page-subtitle text-center">
-          Об'єднуйтесь та керуйте спільними справами в одному місці
-        </p>
+      <div className="row justify-content-center">
+        <div className="col-12 col-md-10 col-lg-8">
+          <div className="teams-layout">
+            <h1 className="page-title text-center mb-2">Команди</h1>
 
-        {error ? <div className="alert alert-danger">{error}</div> : null}
+            <p className="page-subtitle text-center mb-3">
+              Об&apos;єднуйтесь та керуйте спільними справами в одному місці
+            </p>
 
-        <div className="teams-toolbar">
-          <TeamFilters value={filter} onChange={setFilter} />
+            {error ? (
+              <div className="alert alert-danger mb-3" role="alert">
+                {error}
+              </div>
+            ) : null}
 
-          <button
-            className="team-plus"
-            type="button"
-            onClick={() => setAddOpen(true)}
-            aria-label="Додати команду"
-          >
-            <i className="bi bi-plus-lg" aria-hidden="true"></i>
-          </button>
-        </div>
+            <div className="teams-toolbar d-flex align-items-center justify-content-between gap-3 mb-3">
+              <div className="flex-grow-1">
+                <TeamFilters value={filter} onChange={setFilter} />
+              </div>
 
-        {loading ? (
-        <div className="team-members-state">
-          <div className="spinner-border" role="status" aria-hidden="true" />
-          <div className="team-members-state__text">Завантаження...</div>
-        </div>
-        ) : filteredTeams.length === 0 ? (
-          <div className="teams-empty">Не знайдено команд.</div>
-        ) : (
-          <div className="teams-grid">
-            {filteredTeams.map((t) => (
-              <TeamCard
-                key={t.id}
-                team={t}
-                onClick={() => navigate(`/teams/${t.id}`)}
-              />
-            ))}
+              <button
+                className="team-plus"
+                type="button"
+                onClick={() => setAddOpen(true)}
+                aria-label="Додати команду"
+              >
+                <i className="bi bi-plus-lg" aria-hidden="true" />
+              </button>
+            </div>
+
+            {loading ? (
+              <div className="team-members-state d-flex flex-column align-items-center justify-content-center gap-2 py-4">
+                <div className="spinner-border" role="status" aria-hidden="true" />
+                <div className="team-members-state__text fw-bold text-muted">Завантаження...</div>
+              </div>
+            ) : filteredTeams.length === 0 ? (
+              <div className="teams-empty text-center py-5">Не знайдено команд.</div>
+            ) : (
+              <div className="teams-grid">
+                {filteredTeams.map((t) => (
+                  <TeamCard key={t.id} team={t} onClick={() => navigate(`/teams/${t.id}`)} />
+                ))}
+              </div>
+            )}
+
+            <TeamAddModal
+              open={addOpen}
+              onClose={() => setAddOpen(false)}
+              onCreate={handleCreate}
+              onJoin={handleJoin}
+              loadingCreate={creating}
+              loadingJoin={joining}
+            />
           </div>
-        )}
-
-        <TeamAddModal
-          open={addOpen}
-          onClose={() => setAddOpen(false)}
-          onCreate={handleCreate}
-          onJoin={handleJoin}
-          loadingCreate={creating}
-          loadingJoin={joining}
-        />
+        </div>
       </div>
     </div>
   );

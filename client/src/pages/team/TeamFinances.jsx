@@ -130,23 +130,24 @@ export default function TeamFinances() {
 
   return (
     <div className="team-finances-page">
-      <div className="team-finances-head">
-        <div>
-          <h2 className="team-finances-title">Витрати</h2>
+      <div className="team-finances-head d-flex align-items-center justify-content-between gap-3 flex-wrap">
+        <div className="flex-grow-1">
+          <h2 className="team-finances-title mb-1">Витрати</h2>
           <div className="team-finances-subtitle">
             Зручний список витрат для спільного користування.
           </div>
         </div>
-
+  
         <button
           type="button"
           className="btn btn-outline-primary"
           onClick={openCreate}
           disabled={busy}
         >
-          <i className="bi bi-plus-lg" /></button>
+          <i className="bi bi-plus-lg" />
+        </button>
       </div>
-
+  
       <div className="finance-tabs-wrap">
         <div className="finance-tabs">
           <button
@@ -156,7 +157,7 @@ export default function TeamFinances() {
           >
             Усі
           </button>
-
+  
           <button
             type="button"
             className={`finance-tab ${filter === "mine" ? "is-active" : ""}`}
@@ -166,18 +167,20 @@ export default function TeamFinances() {
           </button>
         </div>
       </div>
-
-      {error ? <div className="alert alert-danger finance-alert">{error}</div> : null}
-
+  
+      {error ? <div className="alert alert-danger finance-alert mb-0">{error}</div> : null}
+  
       {loading ? (
-        <div className="team-members-state">
+        <div className="team-members-state text-center">
           <div className="spinner-border" role="status" aria-hidden="true" />
-          <div className="team-members-state__text">Завантаження...</div>
+          <div className="team-members-state__text mt-2">Завантаження...</div>
         </div>
       ) : items.length === 0 ? (
-        <div className="finance-empty">
-          <div className="finance-empty__title">Немає витрат</div>
-          <div className="finance-empty__text">Спробуйте додати першу витрату або змінити фільтр.</div>
+        <div className="finance-empty text-center">
+          <div className="finance-empty__title fw-bold">Немає витрат</div>
+          <div className="finance-empty__text text-muted">
+            Спробуйте додати першу витрату або змінити фільтр.
+          </div>
         </div>
       ) : (
         <div className="finance-list">
@@ -193,7 +196,7 @@ export default function TeamFinances() {
           ))}
         </div>
       )}
-
+  
       <FinanceModal
         open={modalOpen}
         mode={modalMode}
@@ -206,4 +209,4 @@ export default function TeamFinances() {
       />
     </div>
   );
-}
+}  

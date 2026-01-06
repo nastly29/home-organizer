@@ -51,94 +51,122 @@ export default function Profile() {
 
   useEffect(() => {
     if (!pageInfo) return;
-  
-    const timer = setTimeout(() => {
-      setPageInfo("");
-    }, 15000); 
-
+    const timer = setTimeout(() => setPageInfo(""), 15000);
     return () => clearTimeout(timer);
   }, [pageInfo]);
-  
 
   return (
     <div className="container py-4 profile-page">
-      <h1 className="page-title text-center">Налаштування профілю</h1>
+      <div className="row justify-content-center">
+        <div className="col-12 col-md-10 col-lg-8">
+          <h1 className="page-title text-center mb-3">Налаштування профілю</h1>
 
-      <div className="profile-wrap">
-        {pageInfo ? <div className="alert alert-success profile-alert">{pageInfo}</div> : null}
-
-        <div className="profile-card profile-card--single">
-          <div className="profile-row">
-            <div>
-              <div className="profile-row__title">Імʼя</div>
-              <div className="profile-row__value">{displayName || "—"}</div>
+          {pageInfo ? (
+            <div className="alert alert-success profile-alert mb-3" role="status">
+              {pageInfo}
             </div>
-            <button className="profile-action-btn" onClick={() => setOpenName(true)} aria-label="Редагувати імʼя">
-              <i className="bi bi-pencil"></i>
-            </button>
-          </div>
+          ) : null}
 
-          <div className="profile-row">
-            <div>
-              <div className="profile-row__title">Email</div>
-              <div className="profile-row__value">{displayEmail || "—"}</div>
+          <div className="card shadow-sm border-0 profile-card profile-card--single">
+            <div className="card-body p-0">
+
+              <div className="profile-row d-flex align-items-center justify-content-between">
+                <div className="profile-row__left">
+                  <div className="profile-row__title">Імʼя</div>
+                  <div className="profile-row__value">{displayName || "—"}</div>
+                </div>
+
+                <button
+                  type="button"
+                  className="btn btn-sm btn-link p-0 profile-action-btn"
+                  onClick={() => setOpenName(true)}
+                  aria-label="Редагувати імʼя"
+                >
+                  <i className="bi bi-pencil" />
+                </button>
+              </div>
+
+              <div className="profile-row d-flex align-items-center justify-content-between">
+                <div className="profile-row__left">
+                  <div className="profile-row__title">Email</div>
+                  <div className="profile-row__value">{displayEmail || "—"}</div>
+                </div>
+
+                <button
+                  type="button"
+                  className="btn btn-sm btn-link p-0 profile-action-btn"
+                  onClick={() => setOpenEmail(true)}
+                  aria-label="Редагувати email"
+                >
+                  <i className="bi bi-pencil" />
+                </button>
+              </div>
+
+              <div className="profile-row d-flex align-items-center justify-content-between">
+                <div className="profile-row__left">
+                  <div className="profile-row__title">Пароль</div>
+                  <div className="profile-row__value">••••••••</div>
+                </div>
+
+                <button
+                  type="button"
+                  className="btn btn-sm btn-link p-0 profile-action-btn"
+                  onClick={() => setOpenPassword(true)}
+                  aria-label="Змінити пароль"
+                >
+                  <i className="bi bi-lock" />
+                </button>
+              </div>
             </div>
-            <button className="profile-action-btn" onClick={() => setOpenEmail(true)} aria-label="Редагувати email">
-              <i className="bi bi-pencil"></i>
-            </button>
-          </div>
 
-          <div className="profile-row">
-            <div>
-              <div className="profile-row__title">Пароль</div>
-              <div className="profile-row__value">••••••••</div>
+            <div className="card-footer bg-transparent border-0 pt-0">
+              <div className="profile-danger">
+                <button
+                  type="button"
+                  className="profile-danger__link"
+                  onClick={() => setOpenDelete(true)}
+                >
+                  <i className="bi bi-trash" />
+                  Видалити акаунт
+                </button>
+              </div>
             </div>
-            <button className="profile-action-btn" onClick={() => setOpenPassword(true)} aria-label="Змінити пароль">
-              <i className="bi bi-lock"></i>
-            </button>
           </div>
 
-          <div className="profile-danger">
-            <button className="profile-danger__link" onClick={() => setOpenDelete(true)}>
-              <i className="bi bi-trash"></i>
-              Видалити акаунт
-            </button>
-          </div>
+          <EditNameModal
+            open={openName}
+            onClose={() => setOpenName(false)}
+            initialName={displayName}
+            mapError={mapFirebaseError}
+            onSuccess={(newName) => {
+              setDisplayName(newName);
+              setPageInfo("Імʼя успішно оновлено.");
+            }}
+          />
+
+          <EditEmailModal
+            open={openEmail}
+            onClose={() => setOpenEmail(false)}
+            initialEmail={displayEmail}
+            currentEmail={displayEmail}
+            mapError={mapFirebaseError}
+            onInfo={(msg) => setPageInfo(msg)}
+          />
+
+          <ChangePasswordModal
+            open={openPassword}
+            onClose={() => setOpenPassword(false)}
+            mapError={mapFirebaseError}
+            onInfo={(msg) => setPageInfo(msg)}
+          />
+
+          <DeleteAccountModal
+            open={openDelete}
+            onClose={() => setOpenDelete(false)}
+            mapError={mapFirebaseError}
+          />
         </div>
       </div>
-
-      <EditNameModal
-        open={openName}
-        onClose={() => setOpenName(false)}
-        initialName={displayName}
-        mapError={mapFirebaseError}
-        onSuccess={(newName) => {
-          setDisplayName(newName);
-          setPageInfo("Імʼя успішно оновлено.");
-        }}
-      />
-
-      <EditEmailModal
-        open={openEmail}
-        onClose={() => setOpenEmail(false)}
-        initialEmail={displayEmail}
-        currentEmail={displayEmail} 
-        mapError={mapFirebaseError}
-        onInfo={(msg) => setPageInfo(msg)}
-      />
-
-      <ChangePasswordModal
-        open={openPassword}
-        onClose={() => setOpenPassword(false)}
-        mapError={mapFirebaseError}
-        onInfo={(msg) => setPageInfo(msg)}
-      />
-
-      <DeleteAccountModal
-        open={openDelete}
-        onClose={() => setOpenDelete(false)}
-        mapError={mapFirebaseError}
-      />
     </div>
   );
 }

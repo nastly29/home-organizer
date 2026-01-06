@@ -1,5 +1,5 @@
 .public-home {
-  padding-top: 12px;
+  width:100%;
 }
 
 // вітальна частина
@@ -114,5 +114,18 @@
     font-size: 40px;
     color: $primary;
     flex-shrink: 0;
+  }
+}
+
+@media (max-width: 576px){
+  .hero{
+    margin-top: 1px;
+    margin-bottom: 10px;
+    padding: 10px 0 10px;
+  }
+
+  .hero-image-wrap{
+    margin-top: 40px;
+    display: block;
   }
 }

@@ -47,22 +47,13 @@ html {
   }
 }
 
-@media (max-width: 576px){
-  .brand__icon{
-    font-size: 16px;
-  }
-  .brand__top,
-  .brand__bottom{
-    font-size: 16px;
-  }
-}
-
 // футер
 .public-footer {
   background-color: $primary;
   padding: 40px 0 20px;
   margin-top: 80px;
   color: $light;
+  width: 100% !important;
 
   .footer-content {
     display: flex;
@@ -104,5 +95,35 @@ html {
     border-top: 1px solid $light;
     font-size: 14px;
     text-align: center;
+  }
+}
+
+@media (max-width: 576px){
+  .public-header,
+  .private-header {
+    .brand__top,
+    .brand__bottom {
+      font-size: 16px;
+    }
+
+    .brand__icon {
+      width: 28px;
+      height: 28px;
+      font-size: 16px;
+    }
+  }
+
+  .public-footer {
+    .footer-content {
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      text-align: center;
+    }
+
+    .footer-contacts {
+      align-items: center;
+      text-align: center;
+    }
   }
 }
