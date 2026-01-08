@@ -59,23 +59,15 @@ export default function TeamFinances() {
 
   useEffect(() => {
     if (!teamId) return;
-
-    (async () => {
-      try {
-        await loadMembers();
-        await loadItems(filter);
-      } catch (e) {
-        setError(e?.message || "INTERNAL_ERROR");
-      }
-    })();
+    loadMembers().catch(e => setError(e?.message || "INTERNAL_ERROR"));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [teamId]);
-
+  
   useEffect(() => {
     if (!teamId) return;
     loadItems(filter);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filter]);
+  }, [teamId, filter]);
 
   function openCreate() {
     setModalMode("create");
